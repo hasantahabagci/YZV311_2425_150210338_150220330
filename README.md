@@ -30,7 +30,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec pur
 │   ├── model.py
 │   └── plotdata.py
 │    
-├── eploration.ipynb
+├── exploration.ipynb
 │
 ├── model.ipynb
 │
@@ -41,7 +41,6 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec pur
 Required packages:
 - Python3
 - jupyter
-- imblearn
 - pandas==1.4.4
 - scikit-learn==1.0.2
 - seaborn==0.11.2
