@@ -1,7 +1,7 @@
 # Enhancing Customer Experience with AI-Driven Purchase Forecasting
 
 ## Project Descirption
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec pur
+This project focuses on developing a robust predictive analytics system that anticipates which products a customer is likely to repurchase and predicts the timing of those purchases. Leveraging advanced machine learning algorithms—including Pareto/NBD, BG/NBD, RNN with LSTM, and Gradient Boosting—our solution learns patterns from historical transaction data and user behavior, providing personalized, time-aware product recommendations. By predicting repurchases for everyday household items, the system aims to not only enhance customer experience through timely and relevant suggestions but also optimize inventory management for retailers by ensuring the right products are in stock when customers need them. Key metrics such as Mean Absolute Error (MAE), Root Mean Squared Error (RMSE), precision, and AUC-ROC guide model selection and fine-tuning, ensuring robust performance. Ultimately, the ability to provide proactive reordering recommendations significantly improves the consumer’s shopping journey while supporting operational efficiency across the supply chain.
 
 ## Team Members
 - Hasan Taha Bağcı - 150210338
@@ -30,6 +30,10 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec pur
 │   ├── model_process.py
 │   └── plots.py
 │    
+├── models
+│   ├── rf_model_custom.pkl
+│   └── xgb_model_custom.pkl
+│
 ├── main.ipynb
 │
 └── requirements.txt
@@ -39,15 +43,17 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec pur
 Required packages:
 - Python3
 - jupyter
-- pandas==1.4.4
-- scikit-learn==1.0.2
-- seaborn==0.11.2
-- xgboost==1.7.5
-- matplotlib==3.5.2
+- joblib==1.3.2
+- matplotlib==3.10.0
+- numpy==2.2.1
+- pandas==2.2.3
+- scikit_learn==1.6.0
+- seaborn==0.13.2
+- xgboost==2.1.3
 
 To install required packages run `pip install -r requirements.txt` in the project directory.
 
 ## Usage
-To run the project, run `jupyter notebook` in the project directory and open `exploration.ipynb` and `model.ipynb` files.
-You can run the cells in the exploration notebook to see the data exploration process and create the `processed_data.csv` file. 
+To run the project, run `jupyter notebook` in the project directory and open `main.ipynb` file.
+You can run the cells in the notebook to see the data exploration process and create the `final_data.csv` file. 
 After that, you can run the cells in the model notebook to see the model training process and the results, anlysis and evaluation of the models.
