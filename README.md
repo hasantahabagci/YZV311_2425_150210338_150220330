@@ -1,4 +1,4 @@
-# Predictive Replenishment: Enhancing Customer Experience with AI-Driven Purchase Forecasting
+# Enhancing Customer Experience with AI-Driven Purchase Forecasting
 
 ## Project Descirption
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec pur
@@ -26,13 +26,11 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec pur
 │   └── Final_Report.pdf (will be added)
 │
 ├── utils
-│   ├── datapreprocess.py
-│   ├── model.py
-│   └── plotdata.py
+│   ├── data_preprocess.py
+│   ├── model_process.py
+│   └── plots.py
 │    
-├── exploration.ipynb
-│
-├── model.ipynb
+├── main.ipynb
 │
 └── requirements.txt
 ```
