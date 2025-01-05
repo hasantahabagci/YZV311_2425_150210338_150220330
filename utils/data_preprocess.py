@@ -1,5 +1,11 @@
+"""
+Authors: 1) Hasan Taha Bagci - 150210330
+         2) Selman Turan Toker - 150220330
+File: data_preprocess.py
+"""
+
 import pandas as pd
-import numpy as np
+
 
 def fill_missing_category_data(df):
     """
@@ -57,7 +63,6 @@ def engineer_features(df):
         recency_diff['max_date'] - recency_diff['min_date']
     ) / recency_diff['total_unique_product_sold']
 
-    # Merge back
     df_sorted = df_sorted.merge(
         recency_diff['recency_div_product'].reset_index(),
         on=['customer_id', 'product_id'],
@@ -78,20 +83,16 @@ def prepare_test_data(test, engineered_df, mlb):
       - Apply the same MultiLabelBinarizer to 'parent_categories'
       - Drop unused columns
     """
-    # Drop duplicates from engineered_df
     final_unique = engineered_df.drop_duplicates(subset=['customer_id', 'product_id']).copy()
     
-    # Only keep rows that appear in test by (customer_id, product_id) pairs
     test_data_filled = final_unique[
         final_unique[['customer_id', 'product_id']].apply(tuple, axis=1).isin(
             test[['customer_id', 'product_id']].apply(tuple, axis=1)
         )
     ]
 
-    # Replace days_since_purchase with the last_purchase
     test_data_filled['days_since_purchase'] = test_data_filled['last_purchase']
 
-    # If 'next_purchase_weeks' is in the df, drop it
     if 'next_purchase_weeks' in test_data_filled.columns:
         test_data_filled.drop(columns=['next_purchase_weeks'], inplace=True)
 
@@ -106,7 +107,6 @@ def prepare_test_data(test, engineered_df, mlb):
         cat_enc_df
     ], axis=1)
 
-    # Drop columns not needed for inference
     drop_cols = ["purchase_date", "categories", "next_purchase_date", "next_purchase_days"]
     test_data_prepared.drop(
         columns=[col for col in drop_cols if col in test_data_prepared.columns],
