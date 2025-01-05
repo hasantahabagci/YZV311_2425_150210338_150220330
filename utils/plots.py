@@ -1,3 +1,10 @@
+"""
+Authors: 1) Hasan Taha Bagci - 150210330
+         2) Selman Turan Toker - 150220330
+File: plots.py
+"""
+
+
 import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.metrics import ConfusionMatrixDisplay
