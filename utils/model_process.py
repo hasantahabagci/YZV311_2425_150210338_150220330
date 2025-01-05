@@ -1,4 +1,8 @@
-# model_process.py
+"""
+Authors: 1) Hasan Taha Bagci - 150210330
+         2) Selman Turan Toker - 150220330
+File: model_process.py
+"""
 
 from sklearn.model_selection import GridSearchCV
 from sklearn.ensemble import RandomForestClassifier
@@ -7,7 +11,7 @@ import numpy as np
 
 from sklearn.metrics import (
     mean_absolute_error, mean_squared_error,
-    precision_score, roc_auc_score, accuracy_score
+    precision_score, accuracy_score
 )
 
 
@@ -54,21 +58,16 @@ def xgboost_model(X_train, y_train,
 
 class PyTorchLSTM(nn.Module):
     def __init__(self, input_dim, hidden_dim, output_dim=5, num_layers=1):
-        """
-        output_dim=5 for classes 0..4
-        """
         super(PyTorchLSTM, self).__init__()
         self.hidden_dim = hidden_dim
         self.num_layers = num_layers
 
-        # LSTM layer
         self.lstm = nn.LSTM(input_size=input_dim, hidden_size=hidden_dim, num_layers=num_layers, batch_first=True)
         
         # Final linear layer that outputs 5 logits
         self.fc = nn.Linear(hidden_dim, output_dim)
         
     def forward(self, x):
-        # x shape: (batch_size, seq_len, input_dim) if batch_first=True
         batch_size = x.size(0)
 
         # Initialize hidden and cell state
@@ -76,13 +75,12 @@ class PyTorchLSTM(nn.Module):
         c0 = torch.zeros(self.num_layers, batch_size, self.hidden_dim, device=x.device)
 
         # LSTM forward
-        out, _ = self.lstm(x, (h0, c0))  # out shape: (batch_size, seq_len, hidden_dim)
+        out, _ = self.lstm(x, (h0, c0))  
         
-        # Take the output at the last time step
-        out = out[:, -1, :]             # shape: (batch_size, hidden_dim)
+        out = out[:, -1, :]             
         
         # Pass through final linear => produce logits for 5 classes
-        logits = self.fc(out)           # shape: (batch_size, 5)
+        logits = self.fc(out)           
         return logits
 
 class SequenceDataset(Dataset):
@@ -106,25 +104,21 @@ def train_pytorch_lstm(
     batch_size=16,
     lr=0.001,
     device='cpu',
-    model_save_path='models/pytorch_lstm_model_classification.pth'
+    model_save_path='models/pytorch_lstm_model.pth'
 ):
     """
-    Train an LSTM for 5-class classification (labels 0..4).
     X_train: (num_samples, seq_len, input_dim)
     y_train: shape (num_samples,) with integer labels
     """
-    # 1) Create Dataset & DataLoader
     X_t = torch.tensor(X_train, dtype=torch.float32)
     y_t = torch.tensor(y_train, dtype=torch.long)   # long for classification labels
     train_dataset = SequenceDataset(X_t, y_t)
     train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
 
-    # 2) Initialize model
     model = PyTorchLSTM(input_dim, hidden_dim, output_dim, num_layers).to(device)
     criterion = nn.CrossEntropyLoss()  # for multi-class classification
     optimizer = optim.Adam(model.parameters(), lr=lr)
 
-    # 3) Training loop
     model.train()
     for epoch in range(epochs):
         running_loss = 0.0
@@ -132,8 +126,8 @@ def train_pytorch_lstm(
             batch_X, batch_y = batch_X.to(device), batch_y.to(device)
 
             # Forward
-            logits = model(batch_X)  # shape: (batch_size, 5)
-            loss = criterion(logits, batch_y)  # batch_y: (batch_size,)
+            logits = model(batch_X)  
+            loss = criterion(logits, batch_y)  
 
             # Backward
             optimizer.zero_grad()
@@ -145,7 +139,6 @@ def train_pytorch_lstm(
         epoch_loss = running_loss / len(train_loader)
         print(f"Epoch [{epoch+1}/{epochs}], Loss: {epoch_loss:.4f}")
 
-    # 4) Save the model
     torch.save(model.state_dict(), model_save_path)
     print(f"[INFO] LSTM classification model saved to {model_save_path}.")
 
