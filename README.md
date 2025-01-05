@@ -1,7 +1,7 @@
-# Enhancing Customer Experience with AI-Driven Purchase Forecasting
+# Improving Customer Experience with Predictive Analytics for Replenishment Recommendations
 
 ## Project Descirption
-This project focuses on developing a robust predictive analytics system that anticipates which products a customer is likely to repurchase and predicts the timing of those purchases. Leveraging advanced machine learning algorithms—including Pareto/NBD, BG/NBD, RNN with LSTM, and Gradient Boosting—our solution learns patterns from historical transaction data and user behavior, providing personalized, time-aware product recommendations. By predicting repurchases for everyday household items, the system aims to not only enhance customer experience through timely and relevant suggestions but also optimize inventory management for retailers by ensuring the right products are in stock when customers need them. Key metrics such as Mean Absolute Error (MAE), Root Mean Squared Error (RMSE), precision, and AUC-ROC guide model selection and fine-tuning, ensuring robust performance. Ultimately, the ability to provide proactive reordering recommendations significantly improves the consumer’s shopping journey while supporting operational efficiency across the supply chain.
+This project focuses on developing a robust predictive analytics system that anticipates which products a customer is likely to repurchase and predicts the timing of those purchases. Leveraging advanced machine learning algorithms—including XGBoost, Random Forest and LSTM our solution learns patterns from historical transaction data and user behavior, providing personalized, time-aware product recommendations. By predicting repurchases for everyday household items, the system aims to not only enhance customer experience through timely and relevant suggestions but also optimize inventory management for retailers by ensuring the right products are in stock when customers need them. Key metrics such as Mean Absolute Error (MAE), Root Mean Squared Error (RMSE), and precision guide model selection and fine-tuning, ensuring robust performance. Ultimately, the ability to provide proactive reordering recommendations significantly improves the consumer’s shopping journey while supporting operational efficiency across the supply chain.
 
 ## Team Members
 - Hasan Taha Bağcı - 150210338
@@ -32,7 +32,8 @@ This project focuses on developing a robust predictive analytics system that ant
 │    
 ├── models
 │   ├── rf_model_custom.pkl
-│   └── xgb_model_custom.pkl
+│   ├── xgb_model_custom.pkl
+│   └── pytorch_lstm_model.pth
 │
 ├── main.ipynb
 │
