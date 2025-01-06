@@ -52,6 +52,7 @@ Required packages:
 - seaborn==0.13.2
 - xgboost==2.1.3
 
+`Preferred:` If you are using conda, you can create a new environment and install the required packages by running `conda env create -f environment.yaml`.
 To install required packages run `pip install -r requirements.txt` in the project directory.
 
 ## Usage
