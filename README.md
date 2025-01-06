@@ -50,10 +50,11 @@ Required packages:
 - pandas==2.2.3
 - scikit_learn==1.6.0
 - seaborn==0.13.2
+- torch==2.2.2
 - xgboost==2.1.3
 
-`Preferred:` If you are using conda, you can create a new environment and install the required packages by running `conda env create -f environment.yaml`.
-To install required packages run `pip install -r requirements.txt` in the project directory.
+- `Preferred Installation:` If you are using conda, you can create a new environment and install the required packages by running `conda env create -f environment.yaml`.
+- To install required packages run `pip install -r requirements.txt` in the project directory.
 
 ## Usage
 To run the project, run `jupyter notebook` in the project directory and open `main.ipynb` file.
