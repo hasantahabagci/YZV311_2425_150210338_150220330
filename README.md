@@ -7,8 +7,6 @@ This project focuses on developing a robust predictive analytics system that ant
 - Hasan Taha Bağcı - 150210338
 - Selman Turan Toker - 150220330
 
-## Dataset
-
 
 ## Project Structure
 ```bash
